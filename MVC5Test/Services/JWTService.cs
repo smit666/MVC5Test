@@ -16,6 +16,7 @@ namespace MVC5Test.Services
         public JWTService(string secretKey)
         {
             SecretKey = secretKey;
+
         }
 
         public string GenerateToken(IAuthenticationContainerModel model)
