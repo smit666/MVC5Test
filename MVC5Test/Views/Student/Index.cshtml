@@ -1,0 +1,28 @@
+﻿@model MVC5Test.ViewModel.StudentViewModel
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<div>
+    <ol>
+        @{
+            foreach (var item in Model.Students)
+            {
+                <li>@item.Name</li>
+            }
+        }
+
+    </ol>
+</div>
+<br />
+<ol>
+    @{
+        foreach (var item in Model.Departments)
+        {
+            <li>@item.Name</li>
+        }
+    }
+
+</ol>
