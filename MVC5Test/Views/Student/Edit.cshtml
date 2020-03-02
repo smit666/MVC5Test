@@ -1,0 +1,55 @@
+﻿@model MVC5Test.ViewModel.StudentViewModel
+@{
+    ViewBag.Title = "Edit";
+}
+
+@using (Html.BeginForm("Edit", "Student", FormMethod.Post))
+{
+
+
+    <br />
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                @Html.LabelFor(m => m.Student.Name, new { @class = "" })
+                @Html.TextBoxFor(m => m.Student.Name, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Student.Name)
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                @Html.LabelFor(m => m.Student.Email, new { @class = "" })
+                @Html.TextBoxFor(m => m.Student.Email, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Student.Email)
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                @Html.LabelFor(m => m.Student.Age, new { @class = "" })
+                @Html.TextBoxFor(m => m.Student.Age, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Student.Age)
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                @Html.LabelFor(m => m.Student.MobileNo, new { @class = "" })
+                @Html.TextBoxFor(m => m.Student.MobileNo, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Student.MobileNo)
+
+            </div>
+        </div>
+        <br />
+        @Html.HiddenFor(m=>m.Student.StudentId)
+        <input type="submit" value="submit" class="btn btn-primary" />
+
+    </div>
+}
+
+
+
+
+
+
+

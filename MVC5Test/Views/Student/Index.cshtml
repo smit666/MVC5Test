@@ -6,15 +6,33 @@
 <h2>Index</h2>
 
 <div>
-    <ol>
+   
         @{
-            foreach (var item in Model.Students)
-            {
-                <li>@item.Name</li>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+
+                    @foreach (var item in Model.StudentsList)
+                    {
+                    <tr>
+                        <td>@item.Name</td>
+                        <td>@item.Email</td>
+                        <td>@Html.ActionLink("Edit","Edit",new { Id = item.StudentId }) </td>
+                    </tr>
+           
             }
+            </tbody>
+            </table>
         }
 
-    </ol>
+  
 </div>
 <br />
 <ol>
