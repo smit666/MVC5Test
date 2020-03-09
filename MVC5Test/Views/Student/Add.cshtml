@@ -38,6 +38,14 @@
 
             </div>
         </div>
+        <div class="row">
+            <div class="col-md-6">
+                @Html.LabelFor(m => m.Student.DepartmentId, new { @class = "" })
+                @Html.DropDownListFor(m => m.Student.DepartmentId,new SelectList(Model.Departments,"DepartmentId","Name"),"Select", new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Student.DepartmentId)
+
+            </div>
+        </div>
         <br />
         <input type="submit" value="submit" class="btn btn-primary" />
 

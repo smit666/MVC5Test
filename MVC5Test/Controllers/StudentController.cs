@@ -18,7 +18,28 @@ namespace MVC5Test.Controllers
         // GET: Student
         public ActionResult Index()
         {
-           var alist=studentContext.Students.ToList();
+
+            TempData["title"] = "Student";
+
+         // IEnumerable<Student> alist = null;
+           var  alist = studentContext.Students.Join(studentContext.Departments, a => a.DepartmentId, b => b.DepartmentId, (a, b) =>  new  
+            {
+                Name = a.Name,
+                Age = a.Age,
+                Email = a.Email,
+                MobileNo = a.MobileNo,
+                DepartmentName=b.Name,
+                StudentId=a.StudentId,
+                IsActive=a.IsActive
+            }).ToList().Select(m=>new Student {
+                Name=m.Name,
+                Age=m.Age,
+                Email=m.Email,
+                DepartmentName=m.DepartmentName,
+                MobileNo=m.MobileNo,
+                StudentId=m.StudentId,
+                IsActive=m.IsActive
+            }).Where(m => m.IsActive == true);
             var departments = studentContext.Departments.ToList();
             StudentViewModel studentViewModel = new StudentViewModel() {
                 StudentsList=alist,
@@ -29,14 +50,23 @@ namespace MVC5Test.Controllers
         }
         public ActionResult Add()
         {
-
-            return View();
+            
+            StudentViewModel studentViewModel = new StudentViewModel
+            {
+                Departments = studentContext.Departments.ToList()
+            };
+            return View(studentViewModel);
         }
         
         [HttpPost]
         public ActionResult Add(StudentViewModel viewModel)
         {
-            if(ModelState.IsValid)
+
+            StudentViewModel studentViewModel = new StudentViewModel
+            {
+                Departments = studentContext.Departments.ToList()
+            };
+            if (ModelState.IsValid)
             {
                 viewModel.Student.IsActive = true;
 
@@ -46,7 +76,7 @@ namespace MVC5Test.Controllers
             }
             else
             {
-                return View();
+                return View(studentViewModel);
             }
           
         }
@@ -60,15 +90,16 @@ namespace MVC5Test.Controllers
 
         public ActionResult Edit(int id)
         {
-            var resultJoin = studentContext.Students.Join(studentContext.Departments, m => m.DepartmentId, d => d.DepartmentId, (m, d) => new
-            {
-                Name = m.Name,
-                DepartmenName = d.Name
-
-            }).Take(5);
+            var departments = studentContext.Departments.ToList();
+            //var resultJoin = studentContext.Students.Join(studentContext.Departments, m => m.DepartmentId, d => d.DepartmentId, (m, d) => new
+            //{
+            //    Name = m.Name,
+            //    DepartmenName = d.Name
+            //}).Take(5);
             StudentViewModel studentView = new StudentViewModel
             {
-                Student = GetStudentById(id)
+                Student = GetStudentById(id),
+                Departments=departments
                
             };
             return View(studentView);
@@ -78,7 +109,8 @@ namespace MVC5Test.Controllers
         public ActionResult Edit(StudentViewModel studentViewModel)
         {
             var result = studentContext.Students.Where(m => m.StudentId == studentViewModel.Student.StudentId).FirstOrDefault();
-     
+            var departments = studentContext.Departments.ToList();
+
             if (ModelState.IsValid)
             {
                 studentViewModel.Student.IsActive = true;
@@ -91,11 +123,20 @@ namespace MVC5Test.Controllers
             {
                 StudentViewModel studentView = new StudentViewModel
                 {
-                    Student = GetStudentById(studentViewModel.Student.StudentId)
+                    Student = GetStudentById(studentViewModel.Student.StudentId),
+                    Departments=departments
                 };
                 return View(studentView);
             }
            
         }
-    }
+
+        public ActionResult Delete(int id)
+        {
+           var record= studentContext.Students.Where(m => m.StudentId == id);
+            studentContext.Entry(record).CurrentValues.SetValues(new { IsActive = false });
+            studentContext.SaveChanges();
+           return RedirectToAction("Index");
+        }
+        }
 }

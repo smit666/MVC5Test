@@ -6,6 +6,10 @@
 @using (Html.BeginForm("Edit", "Student", FormMethod.Post))
 {
 
+        <h2>@TempData["title"]</h2>
+        TempData.Keep();
+
+    
 
     <br />
     <div class="container">
@@ -40,8 +44,16 @@
 
             </div>
         </div>
+        <div class="row">
+            <div class="col-md-6">
+                @Html.LabelFor(m => m.Student.DepartmentId, new { @class = "" })
+                @Html.DropDownListFor(m => m.Student.DepartmentId, new SelectList(Model.Departments, "DepartmentId", "Name"), "--select--", new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Student.DepartmentId)
+
+            </div>
+        </div>
         <br />
-        @Html.HiddenFor(m=>m.Student.StudentId)
+        @Html.HiddenFor(m => m.Student.StudentId)
         <input type="submit" value="submit" class="btn btn-primary" />
 
     </div>
