@@ -139,6 +139,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
@@ -161,8 +162,17 @@
     <Compile Include="Migrations\202003021136254_StudentModelUpdate.designer.cs">
       <DependentUpon>202003021136254_StudentModelUpdate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202003030325178_AddTableEmployee.cs" />
+    <Compile Include="Migrations\202003030325178_AddTableEmployee.designer.cs">
+      <DependentUpon>202003030325178_AddTableEmployee.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003090752348_ChangesStudent.cs" />
+    <Compile Include="Migrations\202003090752348_ChangesStudent.designer.cs">
+      <DependentUpon>202003090752348_ChangesStudent.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Department.cs" />
+    <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\IAuthenticationContainerModel.cs" />
     <Compile Include="Models\JWTContainerModel.cs" />
     <Compile Include="Models\Student.cs" />
@@ -175,6 +185,7 @@
     <Compile Include="ViewModel\StudentViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap-solar.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -214,6 +225,7 @@
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Student\Add.cshtml" />
     <Content Include="Views\Student\Edit.cshtml" />
+    <Content Include="Views\Error\NotFound.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -243,6 +255,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202003021136254_StudentModelUpdate.resx">
       <DependentUpon>202003021136254_StudentModelUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003030325178_AddTableEmployee.resx">
+      <DependentUpon>202003030325178_AddTableEmployee.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003090752348_ChangesStudent.resx">
+      <DependentUpon>202003090752348_ChangesStudent.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

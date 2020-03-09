@@ -16,5 +16,7 @@ namespace MVC5Test.Models
         public DbSet<Student> Students { get; set; }
 
         public DbSet<Department> Departments { get; set; }
+
+        public DbSet<Employee> Employees { get; set; }
     }
 }

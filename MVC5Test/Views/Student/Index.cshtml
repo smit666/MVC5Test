@@ -2,37 +2,49 @@
 @{
     ViewBag.Title = "Index";
 }
+@{
 
-<h2>Index</h2>
+    <h2>@TempData["title"]</h2>
+    TempData.Keep();
+
+}
 
 <div>
-   
-        @{
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
+
+    @{
+        <div>
+            @Html.ActionLink("Add", "Add", "Student", new { @class = "btn btn-info" })
+
+        </div>
+        <br />
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+
+                    <th>Department</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
 
 
-                    @foreach (var item in Model.StudentsList)
-                    {
+                @foreach (var item in Model.StudentsList)
+                {
                     <tr>
                         <td>@item.Name</td>
                         <td>@item.Email</td>
-                        <td>@Html.ActionLink("Edit","Edit",new { Id = item.StudentId }) </td>
+                        <td>@item.DepartmentName</td>
+                        <td>@Html.ActionLink("Edit", "Edit", new { Id = item.StudentId }) &nbsp; @Html.ActionLink("Delete", "Delete", new { Id = item.StudentId }) </td>
                     </tr>
-           
-            }
-            </tbody>
-            </table>
-        }
 
-  
+                }
+            </tbody>
+        </table>
+    }
+
+
 </div>
 <br />
 <ol>
